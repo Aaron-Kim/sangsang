@@ -1,341 +1,478 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
-    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
-    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
-    <meta name="og:type" content="website" />
-    <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="css/maina.css" />
-    <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
-    <link rel="stylesheet" type="text/css" href="css/globals.css" />
-  </head>
-  <body style="margin: 0; background: #ffffff">
-    <input type="hidden" id="anPageName" name="page" value="maina" />
-    <div class="maina screen">
-      <img class="rectangle-1623" src="img/rectangle-1623.svg" alt="Rectangle 1623" />
-      <img class="mask-group" src="img/mask-group.png" alt="Mask group" />
-      <img class="frame-1707483647" src="img/frame-1707483647.svg" alt="Frame 1707483647" />
-      <div class="add-large-line"><img class="vector" src="img/vector.svg" alt="Vector" /></div>
-      <div class="add-large-line-1"><img class="vector" src="img/vector-1.svg" alt="Vector" /></div>
-      <img class="rectangle-1618" src="img/rectangle-1618@2x.png" alt="Rectangle 1618" />
-      <img class="rectangle-1619" src="img/rectangle-1619@2x.png" alt="Rectangle 1619" />
-      <img class="rectangle-1620" src="img/rectangle-1620@2x.png" alt="Rectangle 1620" />
-      <p class="now-ai paperlogy-5-medium-black-18px">
-        [이상엽의 과학기술 NOW] ‘AI&nbsp;&nbsp;바이오 시대’ 보안 위태롭다
-      </p>
-      <p class="x3-q-_ paperlogy-5-medium-black-18px">
-        3Q _합성생물학을 활용한 천연 색소 및 유도체<br />생산 기술 동향
-      </p>
-      <p class="x3-q-_-1 paperlogy-5-medium-black-18px">3Q _합성생물학과 글로벌 환경 거버넌스 동향</p>
-      <p class="k paperlogy-5-medium-black-18px">K바이오파운드리 기술로 온실가스 자원화 가능성 확인</p>
-      <p class="text-1-1 paperlogy-5-medium-black-18px">
-        전세계 최초 ‘합성생물학 육성법’ 제정...&nbsp;&nbsp;“유연성 갖춘 공진화<br />형 제도 돼야”
-      </p>
-      <div class="date date-20 paperlogy-5-medium-sonic-silver-13px">25-11-20</div>
-      <div class="date-1 date-20 paperlogy-5-medium-sonic-silver-13px">2025-09-26</div>
-      <div class="group-441">
-        <div class="frame-1707483679">
-          <div class="frame-1707483673"><div class="text">주요일정</div></div>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국합성생물학발전협의회 (KSBA)</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- [초기화 및 공통] --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.5; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; display: inline-block; }
+        ul, li { list-style: none; }
+        img { width: 100%; display: block; object-fit: cover; }
+        
+        /* 반응형 컨테이너 */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; position: relative; }
+        .section-padding { padding: 60px 0; }
+        
+        /* 색상 변수 */
+        :root {
+            --primary: #689f38;
+            --dark-navy: #111827;
+            --light-gray: #f5f5f5;
+        }
+
+        /* --- [헤더 & 모바일 메뉴] --- */
+        header { background: #fff; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 1000; }
+        .top-utils { background: #fff; text-align: right; padding: 10px 0; font-size: 13px; color: #666; border-bottom: 1px solid #eee; }
+        .top-utils a { margin-left: 15px; }
+        
+        .header-main { height: 80px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; color: #000; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .logo span { color: #005aab; }
+
+        /* PC 메뉴 */
+        .gnb { display: flex; gap: 30px; font-size: 18px; font-weight: 600; }
+        .gnb li a:hover { color: var(--primary); }
+        
+        /* 모바일 메뉴 버튼 (기본 숨김) */
+        .mobile-menu-btn { display: none; font-size: 24px; cursor: pointer; color: #333; }
+        
+        /* 모바일 메뉴 드로어 */
+        .mobile-nav {
+            display: none; position: absolute; top: 100%; left: 0; width: 100%; 
+            background: #fff; border-top: 1px solid #eee; box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            padding: 20px; z-index: 999;
+        }
+        .mobile-nav li { margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
+        .mobile-nav li a { font-size: 16px; font-weight: 600; display: block; }
+
+        /* --- [메인 배너 & 퀵메뉴] --- */
+        .hero-section { position: relative; width: 100%; height: 500px; background: #eee; }
+        .main-swiper { width: 100%; height: 100%; }
+        .slide-bg { width: 100%; height: 100%; background-size: cover; background-position: center; position: relative; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.6) 30%, transparent); display: flex; align-items: center; }
+        
+        .hero-text { color: #fff; margin-left: 10%; max-width: 600px; padding: 20px; }
+        .hero-text h2 { font-size: 42px; font-weight: 700; margin-bottom: 20px; line-height: 1.3; }
+        .hero-text p { font-size: 18px; opacity: 0.9; }
+
+        /* 퀵메뉴 (PC: 우측 고정 / Mobile: 숨김) */
+        .quick-sidebar {
+            position: absolute; right: 0; top: 0; bottom: 0; width: 100px; 
+            background: rgba(255,255,255,0.95); z-index: 10;
+            display: flex; flex-direction: column; border-left: 1px solid #ddd;
+        }
+        .quick-item {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border-bottom: 1px solid #eee; transition: 0.3s; color: #333; font-size: 13px; font-weight: 500; text-align: center;
+        }
+        .quick-item i { font-size: 24px; margin-bottom: 8px; color: #555; }
+        .quick-item:hover { background: #f9f9f9; color: var(--primary); }
+        .quick-item.highlight { background: var(--primary); color: #fff; border:none; }
+        .quick-item.highlight i { color: #fff; }
+
+        /* --- [1. 웹진 & 뉴스레터 (반응형)] --- */
+        .dark-news-section { background: var(--dark-navy); color: #fff; padding: 60px 0; }
+        .dark-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
+        .section-header h2 { font-size: 24px; font-weight: 700; color: #fff; }
+        .section-header.light { border-bottom: 1px solid #ddd; }
+        .section-header.light h2 { color: #222; }
+
+        .nav-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; transition:0.3s; }
+        .nav-btn:hover { background: #fff; color: #000; }
+
+        .wn-card { 
+            background: #2a2b36; border-radius: 10px; padding: 25px; height: auto; min-height: 240px;
+            display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255,255,255,0.1);
+            position: relative; transition: 0.3s;
+        }
+        .wn-badge { display: inline-block; background: rgba(104, 159, 56, 0.2); color: #aed581; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin-bottom: 10px; }
+        .wn-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #fff; line-height: 1.4; }
+        .wn-desc { font-size: 14px; color: #aaa; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .wn-date { margin-top: 15px; font-size: 12px; color: #666; }
+        
+        .wn-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s; border-radius: 10px;
+        }
+        .wn-card:hover .wn-overlay { opacity: 1; }
+        .plus-icon { font-size: 30px; color: #fff; margin-bottom: 5px; }
+        .view-text { font-size: 14px; color: #fff; }
+
+        /* --- [2. 동향보고서 (리스트형 반응형)] --- */
+        .report-list { display: flex; flex-direction: column; }
+        .report-item { 
+            display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid #eee; background: #fff; 
+        }
+        .repo-thumb { width: 90px; height: 120px; flex-shrink: 0; margin-right: 20px; border-radius: 4px; overflow: hidden; position: relative; background: #eee; }
+        .repo-badge { position: absolute; top: 0; left: 0; background: var(--primary); color: #fff; font-size: 10px; padding: 2px 6px; }
+        
+        .repo-content { flex-grow: 1; min-width: 0; } /* min-width: 0 for text overflow */
+        .repo-title { font-size: 17px; font-weight: 700; margin-bottom: 5px; word-break: keep-all; }
+        .repo-desc { font-size: 13px; color: #666; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .repo-actions { display: flex; gap: 5px; flex-shrink: 0; }
+        .action-btn { 
+            width: 40px; height: 40px; border: 1px solid #ddd; background: #fff; border-radius: 4px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            font-size: 10px; color: #555; cursor: pointer; transition: 0.2s;
+        }
+        .action-btn i { font-size: 14px; margin-bottom: 2px; }
+        .action-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* --- [3. 언론기사 (그리드 반응형)] --- */
+        .press-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .press-card { background: #fff; border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
+        .press-img { height: 150px; background: #ddd; position: relative; }
+        .press-tag { position: absolute; bottom: 0; left: 0; background: rgba(0,0,0,0.6); color: #fff; font-size: 10px; padding: 3px 8px; }
+        .press-body { padding: 15px; }
+        .press-title { font-size: 15px; font-weight: 700; height: 44px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 10px; }
+        .press-date { font-size: 12px; color: #999; display: flex; justify-content: space-between; }
+
+        /* --- [하단 배너 & Footer] --- */
+        .footer-banner { background: #fff; padding: 15px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+        .fb-wrapper { display: flex; align-items: center; gap: 20px; }
+        .banner-slide-item { border: 1px solid #eee; padding: 8px; text-align: center; font-size: 13px; color: #555; border-radius: 4px; }
+        
+        footer { background: #222; color: #999; font-size: 13px; padding: 40px 0; }
+        .footer-addr { font-style: normal; line-height: 1.6; margin-top: 10px; }
+
+        /* =========================================
+           [미디어 쿼리 - 반응형 핵심 코드]
+           ========================================= */
+        
+        /* 태블릿 (1024px 이하) */
+        @media (max-width: 1024px) {
+            .gnb, .quick-sidebar { display: none; } /* PC메뉴, 퀵메뉴 숨김 */
+            .mobile-menu-btn { display: block; } /* 햄버거 버튼 표시 */
+            
+            .press-grid { grid-template-columns: repeat(2, 1fr); } /* 기사 2열 */
+            .hero-text { margin-left: 20px; }
+            .hero-section { height: 400px; }
+        }
+
+        /* 모바일 (768px 이하) */
+        @media (max-width: 768px) {
+            /* 헤더 */
+            .header-main { height: 60px; }
+            .logo { font-size: 20px; }
+            
+            /* 메인 배너 */
+            .hero-section { height: 300px; }
+            .hero-text h2 { font-size: 28px; }
+            .hero-text p { font-size: 14px; }
+            
+            /* 그리드 1열로 변경 (세로 배치) */
+            .dark-grid, .press-grid { grid-template-columns: 1fr; gap: 30px; }
+            
+            /* 동향보고서 리스트 모바일 최적화 */
+            .report-item { flex-direction: column; align-items: flex-start; }
+            .repo-thumb { width: 100%; height: 160px; margin-right: 0; margin-bottom: 15px; }
+            .repo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+            .repo-actions { width: 100%; justify-content: flex-end; margin-top: 10px; }
+            
+            /* 폰트 사이즈 조정 */
+            .wn-card { min-height: auto; }
+            .footer-banner .fb-wrapper { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .footer-banner .swiper { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-utils">
+            <div class="container">
+                <a href="#">로그인</a> <a href="#">회원가입</a> <a href="#">ENG</a>
+            </div>
         </div>
-        <p class="g-bio-week-x-ai-conn paperlogy-5-medium-white-17px">G-BIO WEEK x AI CONNECT with<br />G-FAIR 2025</p>
-        <div class="frame-1707483682 paperlogy-4regular-normal-quill-gray-13px">
-          <div class="text-1">일시</div>
-          <img class="line" src="img/line-61.svg" alt="Line 61" />
-          <div class="text-4">2025-09-22~2025-09-24</div>
+        <div class="container header-main">
+            <a href="#" class="logo">KSBA <span>한국합성생물학발전협의회</span></a>
+            
+            <ul class="gnb">
+                <li><a href="#">협의회 소개</a></li>
+                <li><a href="#">회원안내</a></li>
+                <li><a href="#">회원지원센터</a></li>
+                <li><a href="#">커뮤니티</a></li>
+                <li><a href="#">행사안내</a></li>
+            </ul>
+
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            
+            <ul class="mobile-nav" id="mobileNav">
+                <li><a href="#">협의회 소개</a></li>
+                <li><a href="#">회원안내</a></li>
+                <li><a href="#">회원지원센터</a></li>
+                <li><a href="#">커뮤니티</a></li>
+                <li><a href="#">행사안내</a></li>
+                <li><a href="#" style="color:#666; font-size:14px;">로그인 / 회원가입</a></li>
+            </ul>
         </div>
-        <div class="frame-1707483683 paperlogy-4regular-normal-quill-gray-13px">
-          <div class="text-1">장소</div>
-          <img class="line" src="img/line-61.svg" alt="Line 61" />
-          <div class="text-6">수원컨벤션센터</div>
+    </header>
+
+    <section class="hero-section">
+        <div class="swiper main-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide-bg" style="background-image: url('https://via.placeholder.com/1920x600/1a2b4b/fff?text=Main+Visual');">
+                    <div class="hero-overlay">
+                        <div class="hero-text">
+                            <h2>발전협의회 운영 및<br>주요 사항 의결</h2>
+                            <p>2026년 정기총회 및 산학연 교류회</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide slide-bg" style="background-image: url('https://via.placeholder.com/1920x600/689f38/fff?text=Bio+Tech');">
+                    <div class="hero-overlay">
+                        <div class="hero-text">
+                            <h2>합성생물학 기술혁신</h2>
+                            <p>미래 바이오 산업의 핵심 성장 동력</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="swiper-pagination"></div>
         </div>
-      </div>
-      <div class="group-442">
-        <div class="frame-1707483680 paperlogy-4regular-normal-quill-gray-13px">
-          <div class="frame-1707483673-1 frame-1707483673-4"><div class="text">주요일정</div></div>
-          <div class="frame-1707483682-1">
-            <div class="text-1">일시</div>
-            <img class="line" src="img/line-61.svg" alt="Line 61" />
-            <div class="text-9">2025-09-05~2025-09-05</div>
-          </div>
-          <div class="frame-1707483683-1">
-            <div class="text-1">장소</div>
-            <img class="line" src="img/line-61.svg" alt="Line 61" />
-            <div class="x2-f">대전 라마다호텔 2F, 로얄볼룸</div>
-          </div>
+
+        <div class="quick-sidebar">
+            <a href="#" class="quick-item"><i class="fa-regular fa-file-lines"></i><span>사업자료</span></a>
+            <a href="#" class="quick-item"><i class="fa-regular fa-calendar-check"></i><span>행사일정</span></a>
+            <a href="#" class="quick-item"><i class="fa-solid fa-flask"></i><span>연구실소개</span></a>
+            <a href="#" class="quick-item highlight"><i class="fa-solid fa-building"></i><span>기관소개</span></a>
         </div>
-        <div class="text-11 paperlogy-5-medium-white-17px">2025년도 합성생물학 산학연 교류회</div>
-      </div>
-      <div class="date-2 date-20 paperlogy-5-medium-sonic-silver-13px">2025-09-26</div>
-      <div class="date-3 date-20 paperlogy-5-medium-sonic-silver-13px">25-10-16</div>
-      <div class="date-4 date-20 paperlogy-5-medium-sonic-silver-13px">25-07-07</div>
-      <div class="rectangle-1546"></div>
-      <img class="mask-group-1" src="img/mask-group-1.png" alt="Mask group" />
-      <div class="frame-1707483663">
-        <div class="arrow-left-line"><img class="vector-1" src="img/vector-2.svg" alt="Vector" /></div>
-      </div>
-      <div class="frame-1707483665">
-        <div class="arrow-left-line"><img class="vector-1" src="img/vector-2.svg" alt="Vector" /></div>
-      </div>
-      <div class="frame-1707483664">
-        <div class="arrow-left-line-1 arrow-left-line-4">
-          <img class="vector-2" src="img/vector-4.svg" alt="Vector" />
+    </section>
+
+    <section class="dark-news-section">
+        <div class="container dark-grid">
+            <div>
+                <div class="section-header dark">
+                    <h2>웹진</h2>
+                    <div>
+                        <button class="nav-btn prev-web"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="nav-btn next-web"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="swiper webzineSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide wn-card">
+                            <div>
+                                <span class="wn-badge">기술동향</span>
+                                <div class="wn-title">합성생물학 기술 및 투자 동향</div>
+                                <div class="wn-desc">글로벌 바이오파운드리 시장의 급격한 성장과 함께 주요국들의 투자 현황을 분석합니다.</div>
+                            </div>
+                            <div class="wn-date">2026.01.07</div>
+                            <div class="wn-overlay"><i class="fa-solid fa-plus plus-icon"></i><span class="view-text">자세히보기</span></div>
+                        </div>
+                        <div class="swiper-slide wn-card">
+                            <div>
+                                <span class="wn-badge">정책이슈</span>
+                                <div class="wn-title">랩오토메이션 혁신가</div>
+                                <div class="wn-desc">연구 자동화 시스템 도입을 통한 R&D 효율성 극대화 전략</div>
+                            </div>
+                            <div class="wn-date">2026.01.05</div>
+                            <div class="wn-overlay"><i class="fa-solid fa-plus plus-icon"></i><span class="view-text">자세히보기</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="section-header dark">
+                    <h2>뉴스레터</h2>
+                    <div>
+                        <button class="nav-btn prev-news"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="nav-btn next-news"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="swiper newsletterSwiper">
+                    <div class="swiper-wrapper">
+                         <div class="swiper-slide wn-card" style="background-image:url('https://via.placeholder.com/400x300/333/555'); background-size:cover;">
+                             <div style="background:rgba(0,0,0,0.6); position:absolute; inset:0;"></div>
+                             <div style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                                <div>
+                                    <span class="wn-badge" style="background:var(--primary); color:#fff;">POSTECH</span>
+                                    <div class="wn-title">무세포 시스템 기반 연구</div>
+                                    <div class="wn-desc" style="color:#ddd;">POSTECH 연구팀, 새로운 합성생물학 플랫폼 기술 개발 성공</div>
+                                </div>
+                                <div class="wn-date" style="color:#ccc;">2026.01.07</div>
+                             </div>
+                             <div class="wn-overlay"><i class="fa-solid fa-plus plus-icon"></i><span class="view-text">자세히보기</span></div>
+                        </div>
+                         <div class="swiper-slide wn-card" style="background-image:url('https://via.placeholder.com/400x300/1a2b4b/555'); background-size:cover;">
+                             <div style="background:rgba(0,0,0,0.6); position:absolute; inset:0;"></div>
+                             <div style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                                <div>
+                                    <span class="wn-badge" style="background:var(--primary); color:#fff;">생명연</span>
+                                    <div class="wn-title">차세대 재생의학</div>
+                                    <div class="wn-desc" style="color:#ddd;">줄기세포와 유전자 회로 기술의 만남</div>
+                                </div>
+                                <div class="wn-date" style="color:#ccc;">2026.01.01</div>
+                             </div>
+                             <div class="wn-overlay"><i class="fa-solid fa-plus plus-icon"></i><span class="view-text">자세히보기</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="frame-1707483666">
-        <div class="arrow-left-line-1 arrow-left-line-4">
-          <img class="vector-2" src="img/vector-4.svg" alt="Vector" />
+    </section>
+
+    <section class="section-padding container">
+        <div class="section-header light">
+            <h2>동향보고서</h2>
+            <a href="#" style="font-size:24px; color:#ccc;"><i class="fa-solid fa-plus-circle"></i></a>
         </div>
-      </div>
-      <div class="rectangle-13"></div>
-      <img class="top_line" src="img/top-line.png" alt="top_line" />
-      <div class="navbar">
-        <div class="navbar-link-text-12 navbar-link-text">기관소개</div>
-        <div class="navbar-link-text paperlogy-4regular-normal-black-23px">주요사업</div>
-        <div class="navbar-link-text paperlogy-4regular-normal-black-23px">기술지원</div>
-        <div class="navbar-link-text paperlogy-4regular-normal-black-23px">커뮤니티</div>
-        <div class="navbar-link-text paperlogy-4regular-normal-black-23px">자료실</div>
-        <div class="navbar-link-text paperlogy-regular-normal-black-23px">
-          <span class="paperlogy-regular-normal-black-23px">소식</span><span class="span1">ㆍ</span
-          ><span class="paperlogy-regular-normal-black-23px">알림</span>
+        <div class="report-list">
+            <div class="report-item">
+                <div class="repo-thumb">
+                    <span class="repo-badge">월간</span>
+                    <img src="https://via.placeholder.com/100x130/1565c0/fff?text=Report" alt="표지">
+                </div>
+                <div class="repo-content">
+                    <h3 class="repo-title">2026년도 합성생물학 동향보고서 통합본</h3>
+                    <p class="repo-desc">공학생물학은 생명과학과 데이터 과학, AI 기술을 융합하여 새로운 생물학적 시스템을 설계하고 상업화하는 학문 분야로...</p>
+                    <div style="font-size:12px; color:#888;">2026.01.07 | 조회 10</div>
+                </div>
+                <div class="repo-actions">
+                    <div class="action-btn"><i class="fa-solid fa-download"></i>다운</div>
+                    <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i>보기</div>
+                </div>
+            </div>
+            <div class="report-item">
+                <div class="repo-thumb">
+                    <span class="repo-badge">3Q</span>
+                    <img src="https://via.placeholder.com/100x130/2e7d32/fff?text=Report" alt="표지">
+                </div>
+                <div class="repo-content">
+                    <h3 class="repo-title">합성생물학을 활용한 천연 색소 및 유도체 생산</h3>
+                    <p class="repo-desc">색소는 물질에 특정한 색을 부여하여 인간의 시각적 인지와 감성적 반응을 유도하는 핵심 소재이다.</p>
+                    <div style="font-size:12px; color:#888;">2025.09.28 | 조회 72</div>
+                </div>
+                <div class="repo-actions">
+                    <div class="action-btn"><i class="fa-solid fa-download"></i>다운</div>
+                    <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i>보기</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="text-18 paperlogy-5-medium-white-18px">전체메뉴</div>
-      <div class="rectangle-7"></div>
-      <div class="rectangle-21"></div>
-      <img class="icon" src="img/icon.svg" alt="icon" />
-      <img class="mask-group-2" src="img/mask-group-2.png" alt="Mask group" />
-      <img class="subtract subtract-2" src="img/subtract.svg" alt="Subtract" />
-      <p class="text-19">1&nbsp;&nbsp;/&nbsp;&nbsp;3</p>
-      <div class="text-20 paperlogy-5-medium-black-16px">사업자료</div>
-      <div class="text-21 paperlogy-5-medium-black-16px">행사일정</div>
-      <div class="text-22 paperlogy-5-medium-white-17px">협의회 소개</div>
-      <div class="arrow-right-long-line"><img class="vector-3" src="img/vector-6.svg" alt="Vector" /></div>
-      <div class="arrow-left-long-line"><img class="vector-3" src="img/vector-7.svg" alt="Vector" /></div>
-      <img class="union" src="img/union.svg" alt="Union" />
-      <div class="bar-chart-horizontal-line"><img class="vector-5" src="img/vector-8.svg" alt="Vector" /></div>
-      <div class="rectangle-14"></div>
-      <div class="rectangle-1605"></div>
-      <div class="rectangle-1606"></div>
-      <img class="mask-group-3" src="img/mask-group-3.png" alt="Mask group" />
-      <img class="subtract-1 subtract-2" src="img/subtract-1.svg" alt="Subtract" />
-      <h1 class="text-23 paperlogy-semi-bold-black-45px">기술지원</h1>
-      <div class="text-24 paperlogy-semi-bold-black-45px">주요사업소개</div>
-      <div class="text-25">웹진</div>
-      <div class="text-26">뉴스레터</div>
-      <div class="text-27 paperlogy-semi-bold-black-45px">포토 갤러리</div>
-      <div class="text-28">동향보고서</div>
-      <div class="text-29">공지사항</div>
-      <div class="text-30 paperlogy-5-medium-white-18px">전체</div>
-      <div class="text-31 paperlogy-4regular-normal-white-18px">협의회 소식</div>
-      <div class="text-32 paperlogy-4regular-normal-white-18px">자료실</div>
-      <div class="text-33 paperlogy-4regular-normal-white-18px">주요일정</div>
-      <div class="text-34">언론기사</div>
-      <div class="text-35">한국합성생물학발전협의회 웹진 소식을 받아보세요.</div>
-      <div class="text-36">한국합성생물학발전협의회 뉴스레터 입니다.</div>
-      <p class="text-37 paperlogy-3-light-suva-gray-16px">사진, 영상 등 다양한 방식으로 소식을 전해드립니다.</p>
-      <p class="text-38 paperlogy-3-light-suva-gray-16px">최신 트렌드와 시장변화를 분석한 동향 보고서 입니다.</p>
-      <p class="text-39 paperlogy-3-light-suva-gray-16px">언론에 소개된 최신 뉴스를 한곳에서 확인해보세요.</p>
-      <p class="text-40">소식, 주요일정, 자료등 협의회 새로운 소식을 확인해 보세요.</p>
-      <p class="text-41 paperlogy-5-medium-black-18px">
-        2025년 제1차 한국합성생물학발전협의회 <br />총괄운영위원회 회의
-      </p>
-      <div class="text-42 paperlogy-5-medium-black-18px">2025년도 합성생물학 산학연 교류회</div>
-      <div class="text-43 paperlogy-5-medium-black-18px">2025년도 제2차 운영위원회 워크샵</div>
-      <div class="text-44 paperlogy-5-medium-black-18px">2025년 제1회 정책제도분과 워크샵</div>
-      <p class="text-45 paperlogy-5-medium-black-18px">한국합성생물학발전협의회 제 10권 제2호 <br />논문 모집 안내</p>
-      <p class="text-46 paperlogy-5-medium-black-18px">플라스미드 클로닝 단계에서 반복 서열 삽입 오류<br />해결방법</p>
-      <p class="text-47 paperlogy-5-medium-black-18px">
-        합성 유전자 회로 발현 불안정, 조건설정&nbsp;&nbsp;메뉴얼<br />업로드 방법
-      </p>
-      <div class="date-5 date-20 paperlogy-5-medium-sonic-silver-14px">25-11-13</div>
-      <div class="date-6 date-20 paperlogy-5-medium-sonic-silver-14px">25-11-13</div>
-      <div class="date-7 date-20 paperlogy-5-medium-sonic-silver-14px">25-11-12</div>
-      <img class="line-4" src="img/line-4.svg" alt="Line 4" />
-      <img class="line-5" src="img/line-4.svg" alt="Line 5" />
-      <div class="frame-17">
-        <div class="arrow-left-line-2 arrow-left-line-4">
-          <img class="vector-2" src="img/vector-9.svg" alt="Vector" />
+    </section>
+
+    <section class="section-padding container" style="background:#f9f9f9; width:100%; max-width:100%;">
+        <div class="container">
+            <div class="section-header light">
+                <h2>언론기사</h2>
+                <a href="#" style="font-size:24px; color:#ccc;"><i class="fa-solid fa-plus-circle"></i></a>
+            </div>
+            <div class="press-grid">
+                <div class="press-card">
+                    <div class="press-img">
+                        <img src="https://via.placeholder.com/300x160?text=Press+1" alt="">
+                        <div class="press-tag">Q4_인력양성</div>
+                    </div>
+                    <div class="press-body">
+                        <div class="press-title">[합성생물학 전문인력양성사업] 경연을 넘어, 미래를 그리는 iGEM</div>
+                        <div class="press-date"><span>2026.01.07</span><span>조회 10</span></div>
+                    </div>
+                </div>
+                <div class="press-card">
+                    <div class="press-img">
+                        <img src="https://via.placeholder.com/300x160?text=Press+2" alt="">
+                        <div class="press-tag">Q4_R&D</div>
+                    </div>
+                    <div class="press-body">
+                        <div class="press-title">합성생물학, 바이오의약 혁신의 핵심 동력으로 부상</div>
+                        <div class="press-date"><span>2026.01.07</span><span>조회 10</span></div>
+                    </div>
+                </div>
+                <div class="press-card">
+                    <div class="press-img">
+                        <img src="https://via.placeholder.com/300x160?text=Press+3" alt="">
+                        <div class="press-tag">Biofoundry</div>
+                    </div>
+                    <div class="press-body">
+                        <div class="press-title">바이오파운드리 기술로 온실가스를 '친환경 바이오소재'로 전환</div>
+                        <div class="press-date"><span>2026.01.07</span><span>조회 10</span></div>
+                    </div>
+                </div>
+                <div class="press-card">
+                    <div class="press-img">
+                        <img src="https://via.placeholder.com/300x160?text=Press+4" alt="">
+                        <div class="press-tag">Event</div>
+                    </div>
+                    <div class="press-body">
+                        <div class="press-title">'대전 합성생물학 기반 첨단 바이오제조 글로벌 혁신특구 포럼' 개최</div>
+                        <div class="press-date"><span>2026.01.07</span><span>조회 10</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="frame-16">
-        <div class="arrow-left-line-3 arrow-left-line-4">
-          <img class="vector-1" src="img/vector-10.svg" alt="Vector" />
+    </section>
+
+    <div class="footer-banner">
+        <div class="container fb-wrapper">
+            <strong style="white-space:nowrap;">협력기관</strong>
+            <div class="swiper bannerSwiper" style="overflow:hidden; flex:1; width:100%;">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide banner-slide-item">과학기술정보통신부</div>
+                    <div class="swiper-slide banner-slide-item">한국생명공학연구원</div>
+                    <div class="swiper-slide banner-slide-item">한국연구재단</div>
+                    <div class="swiper-slide banner-slide-item">질병관리청</div>
+                    <div class="swiper-slide banner-slide-item">국가생명연구자원정보센터</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="rectangle-1538"></div>
-      <div class="rectangle-1607"></div>
-      <p class="text-48 paperlogy-5-medium-white-18px">2025년 실태조사 실시 및 협조 요청</p>
-      <div class="date-8 date-20">25-11-25</div>
-      <div class="rectangle-1547"></div>
-      <div class="add-large-line-2"><img class="vector-4" src="img/vector.svg" alt="Vector" /></div>
-      <div class="rectangle-1548"></div>
-      <img class="rectangle-1549" src="img/rectangle-1549@2x.png" alt="Rectangle 1549" />
-      <img class="rectangle-1613" src="img/rectangle-1613@2x.png" alt="Rectangle 1613" />
-      <p class="text-49">합성행물학 기술 및 투자 동향</p>
-      <p class="q3-rd-trend-poste">Q3-[R&amp;D Trend] POSTECH, 무세포<br />시스템 기반에서 리보솜을</p>
-      <p class="q3-rd-trend">Q3-[R&amp;D Trend] 합성생물학이 여는 차세대<br />재생의학</p>
-      <div class="text-50">합성생생물학의 속도를 높이는<br />랩오토메이션 혁신가</div>
-      <p class="bio-economy-brief-2">
-        [BIO ECONOMY BRIEF 204호]_합성생물학 기술 및 <br />투자 동향&nbsp;&nbsp;(출처: 한국바이오협회 한국바이오경제...
-      </p>
-      <div class="date-9 date-20">2025-09-29</div>
-      <div class="date-10 date-20">2025-09-29</div>
-      <div class="frame-1707483662"><div class="text-5 paperlogy-5-medium-java-12px">기술동향</div></div>
-      <div class="frame-1707483674"><div class="text-5 paperlogy-5-medium-java-12px">기업소개</div></div>
-      <p class="text-53">
-        기계공학과 출신 엔지니어들이 생명과학이라는 분야를 <br />접하고,바이오 실험실에서 마주한 불편과 비효율, 그...
-      </p>
-      <p class="text-54">발전협의회 운영 및 주요 사항 의결</p>
-      <p class="text-55">2025년도 합성생물학 산학연 교류회 (2025.11.24)</p>
-      <div class="date-11 date-20">2025-11-24</div>
-      <div class="add-large-line-3"><img class="vector-4" src="img/vector-1.svg" alt="Vector" /></div>
-      <div class="add-large-line-4"><img class="vector-4" src="img/vector.svg" alt="Vector" /></div>
-      <img class="icons" src="img/icons-2@2x.png" alt="icons" />
-      <div class="rectangle-1552"></div>
-      <div class="rectangle-1557"></div>
-      <p class="copyright-korea-sy">COPYRIGHT Ⓒ KOREA SYNTHETIC BIOLOGY ASSOCIATION. ALL RIGHTS RESERVED.</p>
-      <div class="frame-1707483681">
-        <div class="frame-184">
-          <p class="x34113">협의회 : (34113) 대전 유성구 과학로 125, 한국생명공학연구원 KOBIC동 1323호</p>
-        </div>
-        <div class="tel-8242-860-437181">Tel : +82)42-860-4371~81</div>
-      </div>
-      <div class="frame-183">
-        <div class="text-56">개인정보처리방침</div>
-        <img class="line" src="img/line-54.svg" alt="Line 54" />
-        <div class="text-57">관련 정책 및 법령</div>
-      </div>
-      <div class="group-148">
-        <div class="frame"><img class="vector-6" src="img/vector-14.svg" alt="Vector" /></div>
-      </div>
-      <img class="rectangle-1553" src="img/rectangle-1553@2x.png" alt="Rectangle 1553" />
-      <img class="rectangle-1554" src="img/rectangle-1554@2x.png" alt="Rectangle 1554" />
-      <img class="rectangle-1555" src="img/rectangle-1555@2x.png" alt="Rectangle 1555" />
-      <img class="rectangle-1612" src="img/rectangle-1612@2x.png" alt="Rectangle 1612" />
-      <div class="date-12 date-20 paperlogy-4regular-normal-sonic-silver-13px">2025-11-04</div>
-      <div class="date-13 date-20 paperlogy-4regular-normal-sonic-silver-13px">2025-10-29</div>
-      <div class="date-14 date-20 paperlogy-4regular-normal-sonic-silver-13px">2025-09-05</div>
-      <div class="date-15 date-20 paperlogy-4regular-normal-sonic-silver-13px">2025-09-02</div>
-      <div class="ellipse-68"></div>
-      <div class="text-58 paperlogy-5-medium-black-16px">회원안내</div>
-      <img class="img_logo_ksba-1 img_logo_ksba" src="img/img-logo-ksba-1.png" alt="img_logo_ksba 1" />
-      <div class="lock-line"><img class="vector-7" src="img/vector-15.svg" alt="Vector" /></div>
-      <div class="text-59">로그인</div>
-      <div class="text-60">회원가입</div>
-      <div class="frame-1707483658">
-        <div class="eng">ENG</div>
-        <img class="vector-8" src="img/vector-16.svg" alt="Vector" />
-      </div>
-      <div class="user-line"><img class="vector-9" src="img/vector-17.svg" alt="Vector" /></div>
-      <div class="group-438">
-        <div class="ellipse-85"></div>
-        <div class="ellipse-86"></div>
-        <div class="ellipse-87"></div>
-        <img class="line-59" src="img/line-59.svg" alt="Line 59" />
-        <img class="line-60" src="img/line-60.svg" alt="Line 60" />
-      </div>
-      <img class="icons-1" src="img/icons.svg" alt="icons" />
-      <img class="icons-2" src="img/icons-1.svg" alt="icons" />
-      <img class="icons-3" src="img/icons-3.svg" alt="icons" />
-      <div class="rectangle-1608"></div>
-      <div class="rectangle-1614"></div>
-      <div class="rectangle-1609"></div>
-      <div class="rectangle-1615"></div>
-      <div class="text-61">사업소개</div>
-      <div class="text-62 paperlogy-5-medium-chelsea-cucumber-22px">행사소개</div>
-      <div class="text-63 paperlogy-5-medium-chelsea-cucumber-22px">기업 소개</div>
-      <div class="text-64">한국합성생물학발전협의회 주요사업을 소개합니다.</div>
-      <p class="text-65">합성생물학 연구 과정에서 발행하는 기술적 문제를 함께 해결합니다.</p>
-      <img class="rectangle-1610" src="img/rectangle-1610@2x.png" alt="Rectangle 1610" />
-      <img class="rectangle-1611" src="img/rectangle-1611@2x.png" alt="Rectangle 1611" />
-      <div class="ellipse-88"></div>
-      <div class="ellipse-89"></div>
-      <div class="ellipse-90"></div>
-      <div class="ellipse-91"></div>
-      <p class="korea-synthetic-biol paperlogy-5-medium-black-18px">
-        Korea Synthetic Biology Association(KSBA) <br />brochure
-      </p>
-      <div class="new new-2">NEW</div>
-      <div class="new-1 new-2">NEW</div>
-      <p class="text-66 paperlogy-5-medium-black-18px">
-        “바이오제조 혁신을 위한 합성생물학, 디지털 전환의 <br />핵심으로 부상” 브로셔 다운로드
-      </p>
-      <div class="date-16 date-20 paperlogy-5-medium-sonic-silver-14px">25-11-13</div>
-      <div class="date-17 date-20 paperlogy-5-medium-sonic-silver-14px">25-11-02</div>
-      <img
-        class="korea-synthetic-biology-association"
-        src="img/korea-synthetic-biology-association.svg"
-        alt="Korea Synthetic Biology Association"
-      />
-      <div class="text-67 paperlogy-5-medium-chelsea-cucumber-22px">연구실 소개</div>
-      <div class="rectangle-1616"></div>
-      <div class="rectangle-1617"></div>
-      <img class="arrow-left-s" src="img/-arrow-left-s.svg" alt="arrow-left-s" />
-      <div class="rectangle-1474"></div>
-      <div class="rectangle-1475"></div>
-      <img class="arrow-right-s" src="img/-arrow-right-s.svg" alt="arrow-right-s" />
-      <img class="image-24 image" src="img/image-24.png" alt="image 24" />
-      <div class="x16044-12"><img class="x111" src="img/---11108-12.svg" alt="11108-12" /></div>
-      <div class="x16213-11"><img class="x111" src="img/---11110-11.svg" alt="11110-11" /></div>
-      <img class="image-25 image" src="img/image-25@2x.png" alt="image 25" />
-      <div class="rectangle-1621"></div>
-      <div class="rectangle-1622"></div>
-      <div class="x16044-12-1"><img class="x111" src="img/---11108-12.svg" alt="11108-12" /></div>
-      <div class="x16213-11-1"><img class="x111" src="img/---11110-11.svg" alt="11110-11" /></div>
-      <div class="group-439">
-        <div class="frame-1707483677"></div>
-        <p class="korea-synthetic-biol-1 paperlogy-5-medium-white-17px">
-          Korea Synthetic Biology <br />Association (KSBA)brochure
-        </p>
-        <div class="date-18 date-20 paperlogy-5-medium-sonic-silver-13px">2025-09-26</div>
-        <div class="frame-1707483673-2 frame-1707483673-4">
-          <div class="text-68 paperlogy-5-medium-java-12px">협의회 소식</div>
-        </div>
-      </div>
-      <div class="group-440">
-        <div class="frame-1707483678">
-          <div class="frame-1707483673-3 frame-1707483673-4"><div class="text-69">자료실</div></div>
-        </div>
-        <div class="text-70 paperlogy-5-medium-white-17px">한국합성생물학발전협의회 소개 브로셔</div>
-        <div class="date-19 date-20 paperlogy-5-medium-sonic-silver-13px">2025-09-26</div>
-      </div>
-      <img class="img_logo_ksba-2 img_logo_ksba" src="img/img-logo-ksba-1.png" alt="img_logo_ksba 2" />
-      <div class="frame-2">
-        <div class="text-71">관련 사이트 바로가기</div>
-        <div class="frame-1"><img class="vector-10" src="img/vector-18.svg" alt="Vector" /></div>
-      </div>
-      <div class="add-large-line-5"><img class="vector" src="img/vector-1.svg" alt="Vector" /></div>
-      <div class="add-large-line-6"><img class="vector" src="img/vector-1.svg" alt="Vector" /></div>
-      <div class="group-443">
-        <div class="ellipse-85-1 ellipse-85-3"></div>
-        <div class="ellipse-86-1 ellipse-86-3"></div>
-        <div class="ellipse-87-1 ellipse-87-3"></div>
-        <img class="line-59" src="img/line-59-1.svg" alt="Line 59" />
-        <img class="line-60" src="img/line-60-1.svg" alt="Line 60" />
-      </div>
-      <img class="line-62" src="img/line-62.svg" alt="Line 62" />
-      <div class="group-447">
-        <img class="vector-11" src="img/vector-21.svg" alt="Vector" />
-        <img class="vector-12" src="img/vector-22.svg" alt="Vector" />
-        <img class="vector-13" src="img/vector-23.svg" alt="Vector" />
-        <img class="vector-14" src="img/vector-24.svg" alt="Vector" />
-        <img class="vector-15" src="img/vector-24.svg" alt="Vector" />
-        <img class="vector-16" src="img/vector-26.svg" alt="Vector" />
-        <img class="vector-17" src="img/vector-26.svg" alt="Vector" />
-        <img class="vector-18" src="img/vector-28.svg" alt="Vector" />
-      </div>
-      <img class="group-445" src="img/group-445@2x.png" alt="Group 445" />
-      <img class="group-444" src="img/group-444@2x.png" alt="Group 444" />
-      <div class="group-448">
-        <div class="ellipse-85-2 ellipse-85-3"></div>
-        <div class="ellipse-86-2 ellipse-86-3"></div>
-        <div class="ellipse-87-2 ellipse-87-3"></div>
-        <img class="line-59-1" src="img/line-59-2.svg" alt="Line 59" />
-        <img class="line-60-1" src="img/line-60-2.svg" alt="Line 60" />
-      </div>
     </div>
-  </body>
+
+    <footer>
+        <div class="container">
+            <div style="font-size:20px; font-weight:bold; color:#fff; margin-bottom:15px;">KSBA 한국합성생물학발전협의회</div>
+            <address class="footer-addr">
+                (34113) 대전 유성구 과학로 125, 한국생명공학연구원 KOBIC동 1323호<br>
+                Tel: +82) 42-860-4371~81 | Email: webmaster@ksba.or.kr
+            </address>
+            <p style="margin-top:20px; color:#666;">COPYRIGHT © KOREA SYNTHETIC BIOLOGY ASSOCIATION. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // 모바일 메뉴 토글 함수
+        function toggleMenu() {
+            var menu = document.getElementById("mobileNav");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+
+        // Swiper 설정
+        new Swiper('.main-swiper', { loop: true, autoplay: { delay: 4000 }, pagination: { el: '.swiper-pagination', clickable: true } });
+        
+        new Swiper('.webzineSwiper', { 
+            slidesPerView: 2, spaceBetween: 20, loop: true,
+            navigation: { nextEl: '.next-web', prevEl: '.prev-web' },
+            breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 } }
+        });
+
+        new Swiper('.newsletterSwiper', { 
+            slidesPerView: 2, spaceBetween: 20, loop: true,
+            navigation: { nextEl: '.next-news', prevEl: '.prev-news' },
+            breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 } }
+        });
+
+        new Swiper('.bannerSwiper', { 
+            slidesPerView: 2, spaceBetween: 10, autoplay: { delay: 2000 },
+            breakpoints: { 480: { slidesPerView: 3 }, 768: { slidesPerView: 5 } }
+        });
+    </script>
+</body>
 </html>
